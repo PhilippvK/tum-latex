@@ -280,4 +280,4 @@ sympy-plots-for-*.tex/
 *.sav
 
 # Custom
-_build/
+#_build/
