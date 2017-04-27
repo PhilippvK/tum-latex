@@ -1,5 +1,5 @@
-sudo: required
-dist: trusty
+#sudo: required
+#dist: trusty
 before_install:
 - ls -l
 #- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
