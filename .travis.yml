@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 before_install:
 - ls -l
-- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german
+- sudo apt-get update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german
 script:
 - ls
 - mkdir _build
