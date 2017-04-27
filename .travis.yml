@@ -1,19 +1,15 @@
 sudo: required
 dist: trusty
 before_install:
-- ls -l
 - sudo apt-get update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german
 script:
-- ls
 - mkdir _build
 - pdflatex -halt-on-error -output-directory _build tex/ex.tex
-- ls -l
 deploy:
-  provider: releases
-  api_key:
-    secure: lNbXXw+w+nxOXfMbjcuSzfcWZBUULSi0fl+jHFIFX/yG0J/RKP1lNU3Lz4cirzVGKGZlPHtQMZvaT2glMXe8XGM7XcxOpP0RB/lSrPaAX3/341TCTNgnTXsjOjxQQ/Rrqvl/810GxegYGvGkznvj4ECwMRqU/kZacLTmP8Mf6Z2hok5G1PJpWWD3VTnNKN0MlGdNH2DwncdEaia/DrsO294DsxtYkFgsY3Ciccll442lsCzmAYXFnspIDQJkhXsC3PRUj5tQfYWjSX9+d1q+GXtadWTzLt2GiWJhBjkfl2tBrT8LI8Andtn61xzinafTlL37psLBONpw5DnIiwo1H5PqQKl99NXFXF/2nDJmTFmJ+7LgtL+7dh6FGbdx5gY3Jib1OUiDmQIWZYzuqqdZjuczhn22gjirvNIvJmqw9cRycsjlZHPSxxqlXRGOAyBRsEfl/U3IeA6Kl1S32zZsJOpHstiHU8ppbUY1zzbus77Bu+CZ9C2WvCBo5HRpc/pzehU2PC/BWb1dXyTTPA2+vcyXN5RWCmhJ/Sazsv6RxMyGElXc5tvxjkUMjvC64qIOlRoVcyoevegZINGPngZVlvyNoIe5xW6zl8+roMBQS362y0dTG12hepd7dX8lGK6OMWea+Ceynen1Du8aueLSm1wX9VrS/TxyT3Q78QxUJfI=
-  file:
-  - _build/ex.pdf
+  provider: pages
   skip_cleanup: true
+  github_token: $GitHub_Token # Set in travis-ci.org dashboard
+  target_branch: output
+  local_dir: _build
   on:
-    tags: true
+    branch: master
