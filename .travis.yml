@@ -7,6 +7,7 @@ before_install:
 script:
 - ls
 - mkdir _build
+- tlmgr --global search --file lingmacros.sty
 - pdflatex -output-directory _build tex/simple.tex
 - pdflatex -output-directory _build tex/complex.tex
 - ls -l
