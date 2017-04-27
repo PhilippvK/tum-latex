@@ -2,13 +2,14 @@ sudo: required
 dist: trusty
 before_install:
 - ls -l
-- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+#- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
   texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
 script:
 - ls
 - mkdir _build
-- pdflatex -output-directory _build tex/simple.tex
-- pdflatex -output-directory _build tex/complex.tex
+#- pdflatex -output-directory _build tex/simple.tex
+#- pdflatex -output-directory _build tex/complex.tex
+- ls -l
 deploy:
   provider: releases
   api_key:
