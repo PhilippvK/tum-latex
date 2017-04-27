@@ -6,9 +6,7 @@ before_install:
 script:
 - ls
 - mkdir _build
-- tlmgr init-usertree
-- sudo tlmgr update --all
-- tlmgr --global search --file lingmacros.sty
+- sudo apt-get install xzdec
 - pdflatex -interaction errorstopmode -output-directory _build tex/simple.tex
 - pdflatex -output-directory _build tex/complex.tex
 - ls -l
