@@ -1,11 +1,12 @@
 sudo: required
 dist: trusty
 before_install:
-- sudo apt-get update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german
+- sudo apt-get -qq update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german
+# add new .tex files like this: ./mylatex PATH (without *.tex)
 script:
-- mkdir _build
-- pdflatex -halt-on-error -output-directory _build tex/ex.tex
-- pdflatex -halt-on-error -output-directory _build WS17/Analysis_3/ANA2.tex
+- mkdir _build # temporary build folder
+- ./mylatex tex # Test
+- ./mylatex WS17/Analysis_3 # Analysis_3
 deploy:
   - provider: pages
     skip_cleanup: true
@@ -17,9 +18,10 @@ deploy:
   - provider: releases
     api_key:
       secure: $API_Key
+    # add output files here
     file:
-    - _build/ex.pdf
-    - _build/ANA2.pdf
+    - _build/ex.pdf # Test
+    - _build/ANA2.pdf # Analysis_3
     skip_cleanup: true
     on:
       tags: true
