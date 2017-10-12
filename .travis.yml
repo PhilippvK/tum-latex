@@ -5,8 +5,8 @@ before_install:
 # add new .tex files like this: ./mylatex PATH (without *.tex)
 script:
 - mkdir _build # temporary build folder
-- ./mylatex tex # Test
-- ./mylatex WS17/Analysis_3 # Analysis_3
+- ./mylatex.sh tex # Test
+- ./mylatex.sh WS17/Analysis_3 # Analysis_3
 deploy:
   - provider: pages
     skip_cleanup: true
