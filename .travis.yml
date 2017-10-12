@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 before_install:
-- sudo apt-get -qq update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german texlive-science
+- sudo apt-get -qq update && sudo apt-get install --no-install-recommends xzdec texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng perl-tk texlive texlive-lang-german texlive-science latex-xcolor
 # add new .tex files like this: ./mylatex PATH (without *.tex)
 script:
 - mkdir _build # temporary build folder
@@ -21,7 +21,7 @@ deploy:
     # add output files here
     file:
     - _build/ex.pdf # Test
-    - _build/ANA2.pdf # Analysis_3
+    - _build/Analysis_3.pdf # Analysis_3
     skip_cleanup: true
     on:
       tags: true
