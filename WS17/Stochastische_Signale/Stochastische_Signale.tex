@@ -1,0 +1,302 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% LaTeX4EI Template for Cheat Sheets                                Version 1.0
+%					
+% Authors: Emanuel Regnath, Martin Zellner
+% Contact: info@latex4ei.de
+% Encode: UTF-8, tabwidth = 4, newline = LF	
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+% ======================================================================
+% Document Settings
+% ======================================================================
+
+% possible options: color/nocolor, english/german, threecolumn
+% defaults: color, english
+\documentclass[german]{latex4ei/latex4ei_sheet}
+
+% set document information
+\title{Stochastische\\Signale}
+\author{Philipp van Kempen}					% optional, delete if unchanged
+\myemail{philipp.van-kempen@tum.de}			% optional, delete if unchanged
+\mywebsite{phi.philonata.de}			% optional, delete if unchanged
+
+
+% ======================================================================
+% Begin
+% ======================================================================
+\begin{document}
+
+
+% Title
+% ----------------------------------------------------------------------
+\maketitle   % requires ./img/Logo.pdf
+
+
+% Section
+% ----------------------------------------------------------------------
+\section*{Sonstiges}
+\subsection*{Begriffe}
+	\begin{itemize}
+		\item Bitfolge: Entweder 0 oder 1
+		\item Codew\"orter: $2^n$ M\"oglichkeiten
+		\item Diskretes Experiment: Abz\"ahlbar viele Ergebnisse
+		\item Deterministische Signale:?
+		\item geordnete Paare/Tupel: $(a,b)$\\
+			$(i,j)\neq(j,i), i\neq j$\\
+			Gleichheit komponentenweise!
+		\item ungeordnete Paare/Tupel: $\{a,b\}$\\
+			$\{i,j\}=\{j,i\} \forall i,j$
+		\item abz\"ahlbar unendlich:\\
+		\item nicht abz\"ahlbar?
+	\end{itemize}
+\subsection*{Beispiele:}
+\begin{itemize}
+	\item $\Omega=\{(h1,h2,\ldots,h_6) \in \N_0^6 | h_1+ \cdots +h_6=2 \}$: TODO
+	\item $A=\{(\omega_1,\omega_2) \in \Omega | \omega_1 + \omega_2 >9\}$: TODO
+	\item $A'=\{\omega' \in \Omega' | \omega'>9\}$
+	\item Kiosk: Hoher Eisabsatz, ist keine Ursache f\"ur sonniges Wetter, sondern eine Folge davon. ($P(S|E)\neq P(E|S)$)
+	\item Ereignisse $A,B,C$:
+		\begin{itemize}
+			\item mindestens eins der Ereignisse: $A \cup B \cup C$
+			\item h\"ochstens eins der Ereignisse: ${((A\ cap B) \cup (A \cap C) \cup (B \cap C))}^{c}$
+			\item keins: $(A^c\cap B^c \cap C^c)={(A \cup B \cup C)}^c$
+		\end{itemize}
+	\item Beim Finden von disjunkten Teilmengen von sich schneidenden Mengen muss die Schnittmenge selbst auch als Menge aufgef\"uhrt werden.
+	\item Gr\"unde f\"ur detailliertere Modellierung: sp\"ater doch auf Informationen zur\"uckgreifen, Modellbildung anhand von Nachfrage, was \"uberhaupt erwartet werden kann ohne selbst zu Messen was ankommt
+	\item Don't Care: $(0,*)$
+	\item Falls Wahrscheinlichkeitsmass zu pr\"ufen, gilt es Widerspr\"uche z. B. bei Teilmengen zu finden!
+	\item Aus Mentorgruppe: $P(A \setminus B)=P(A)-P(A \cap B)$
+\end{itemize}
+\subsection*{Pr\"ufung}
+Eiheiten abgeben, falls nicht normiert!\\
+Achtung bei Abbildungen in anderen Wahrscheinlichkeitsraum! (Nicht immer 1 zu 1,$\Omega$ und $\Omega'$ \"aquivalent aber nicht gleich)\\
+Empfehlenswert, verwendete K\"urzel definieren: $A,B \rightarrow $ Urne, $S \rightarrow $ S,$\dots$
+\section{Einf\"uhrung}
+\subsection{Zufall:} Etwas l\"asst sich nicht beschreiben oder man will es nicht beschreiben.\\
+Zuf\"alligkeit $\neg$ Willk\"uhrlichkeit!\\
+\subsection{Wahrscheinlichkeit:}
+\textbf{Anwendbarkeit historischer Wahrscheinlichkeitsbegriffe:}\\
+Verh\"altnisbegriff nur anwendbar, falls alle Ereignisse gleich wahrscheinlich.\\
+Anzahl nur anwendbar falls Experiment wiederholbar\\
+z. B. $P(''1'')=\frac{\# 1}{\# gesamt}$
+\section{Wahrscheinlichkeitsr\"aume}
+
+\[(\Omega,\F,P)\]
+
+\subsection{Ergebnisraum $\Omega$}
+Abh\"angig von Anwendung, vom Beobachtung bestimmt.\\
+Menge von Beobachtungen, die wir bez\'uglich des Experiments machen k\"onnen. Jedes Ergebnis muss Teil des Ergebnisraumes sein.\\
+Beispiele f\'ur Bitfolge $b_1b_2b_3, b\ in {0,1}$\\
+$\Omega={(0,0,0),(0,0,1),\ldots,(1,1,1)}$ aber auch $\Omega={0,1,2,3}$\\
+\textbf{M\"achtigkeit:} $|\Omega|=\#	$ Elemente\\
+Ergebnismenge kann unendlich sein (Kopf/Zahl)
+\subsection{$\sigma$-Algebra / Ereignisalgebra}
+Minimaler Satz an in sich konsistenten Beobachtungen\\
+Elementarereingis: Ereignis, besteht nur aus einem einzigen Ergebnis\\
+Ereignisse $A,B \subset \Omega$\\
+Gegenereignisse $A^c,B^c$\\
+mit Komplement $A^c=\Omega \setminus A$\\
+Differenzmenge $A \setminus B=$?\\
+Schnittmenge $A \cap B, {(A \cap B)}^c$\\
+Un\'ogliches Ereignis $\emptyset$\\
+Sicheres Ereignis $\Omega$\\
+Ergebnis $\neq$ Ereignis, da Ereignis Menge von Ergebnissen ist.\\
+$\F \subset \P(\Omega)$ wobei Potenzmenge $\P(\Omega)$ Menge aller Teilmengen von $\Omega^2$ mit $|\P|=2^{|\Omega|}$\\
+Kleinste ($\F=\{\emptyset,\Omega\}$) und gr\"o\ss{}te $\P(\Omega)$ $\sigma$-Algebra\\
+Wenn sich $A$ und $B$ bestimmen lassen, kann man auch die Schnittmenge bestimmen.\\
+$\#$ M\"oglichkeiten Ereignisse zu definieren: $2^{|\Omega|}$\\
+\"Aquivalente Beschreibungen eines Ereignisses sind NICHT gleich weil sie auf anderen Ereignismengen basieren.
+\textbf{Venn-Diagramm:}
+TODO mit Identit\"aten aus Skript\\
+$A,B$ partitionieren $\Omega$, sodass $G_1 \cup G_2 \cup \ldots=\Omega$ und $G_i \cap G_j = \emptyset , i \neq j$\\
+M\"oglichkeiten:\\
+\begin{itemize}
+	\item $A,B$ schneiden sich: GRAFIK\\
+		$G_1=A \setminus B$\\
+		$G_2=B \setminus A$\\
+		$G_3=A \cap B$\\
+		$G_4=\Omega \setminus (A \cup B)$\\
+		$|\F|=2^4$\\
+		$\F=\{\emptyset,\Omega,A,A^c,B,B^c,A\cup B, {(A \,cup B)}^c,A\cap B,{(A \cap B)}^c\,A\setminus B,{(A\ setminus B)}^c,B\setminus A,{(B \setminus A)}^c,(A\setminus B) \cup (B \setminus A),{((A \setminus B) \cup (B \setminus A))}^c\}$
+	\item $A,B$ disjunkt: GRAFIK\\
+		$G_1=A$\\
+		$G_2=B$\\
+	    $G_3=\Omega \setminus (A \cup B)$\\
+		$|\F|=2^3$\\
+		$\F=\{\emptyset,\Omega,A,B,A^c,B^c,A \cup B,{(A \cup B)}^c\}$
+		Aus disjunkten Teilmengen (Partitionierungen) kann man einfach eine gr\"o\ss{}ere Menge bauen
+	\item $A$ alleine: GRAFIK\\
+		$G_1=A$\\
+		$G_2=\Omega \setminus A$\\
+		$\F=\{\emptyset,\Omega,A,A^c\}$
+\end{itemize}
+\textbf{Bedingungen f\"ur Mengensystem $\F$ als $\sigma-$Algebra:}\\
+\begin{enumerate}
+	\item $\Omega \in \F$ ($\F$ nicht leer)
+	\item $A \in \F \Rightarrow A^c \in \F$ ($\emptyset \in \F$)
+	\item $A_1,A_2,\ldots \in F \Rightarrow \bigcup\limits_{i=1}^\infty A_i \in \F$\\
+		mit De Morgan:\\
+		\[\bigcap\limits_{i=1}^\infty A_i={(\bigcup\limits_{i=1}^\infty A_i^c)}^c\]
+		sowie: $A_i \setminus A_j={(A_i^c \cup A_j)}^c$\\
+		gilt: $\bigcap\limits_{i=1}^\infty A_i \in \F$ und $A_i \setminus A_j \in F$\\
+\end{enumerate}
+\textbf{Folgerung:} Eine $\sigma$-Algebra ist ein Mengensystem, welches gegen\"uber Komplementbildung, endlichen und abz\"ahlbaren Vereinigungen und Durchschnitten sowie gegen\"uber Mengendifferenz abgeschlossen ist.\\
+Anzahl der Elemente muss immer gerade sein, da zu jedem Ereignis ein Gegenereignis existieren muss!\\
+\subsubsection{Messraum}
+oder auch \textbf{messbarer Raum}\\
+\[(\Omega,\F)\]
+
+\subsection{Wahrscheinlichkeitsma\ss{}$P$}
+Man kann Wahrscheinlichkeiten nur Mengen, zuordnen, nicht den Elementen selbst.
+\subsubsection{Axiome}
+$A$: Ereignis
+\begin{enumerate}
+	\item Nichtnegativit\"at: $P(A)\ge 0$
+	\item Normiertheit: $P(\Omega)=1$
+	\item Additivit\"atssatz: $A_i \cap A_j=\emptyset \forall i \neq j$
+		\[P(\bigcup\limits_{i=1}^\infty A_i)=\sum_{i=1}^\infty P(A_i)\]
+\end{enumerate}
+\textbf{Wahrscheinlichkeitsma\ss{}auf dem Messraum $(\Omega,\F)$:}\\
+$P: \F \to [0,1]$\\
+\subsubsection{Elementare Eigenschaften}
+\begin{enumerate}
+	\item $P(A^c)=1-P(A)$
+	\item $P(\emptyset)=0$
+	\item $P(A \setminus B)=P(A \cap B^c)=P(A)-P(A\cap B)$
+	\item $P(A \cup B)=P(A)+P(B)-P(A\cap B)$
+	\item $P(A \cap B)=P(A)+P(B)-P(A \cup B)$
+	\item $A \subset B \Rightarrow P(A) \le P(B)$
+	\item Union Bound:\\
+		\[P(\bigcup\limits_{i=1}^k A_i) \le \sum_{i=1}^k P(A_i)\]
+\end{enumerate}
+\subsubsection{Interbretationen}
+\begin{enumerate}
+	\item TODO
+\end{enumerate}
+\subsection{Messbarkeit}
+Probleme:
+\begin{itemize}
+	\item $\Omega$ nicht abz\"ahlbar: Beschr\"ankung auf Teilmengen n\"otig
+\end{itemize}
+\subsubsection{Borelsche $\sigma$-Algebra}
+\[\B^n \overset{\Delta}{=} \B(\R^n)\]
+$\sigma(G)=$kleinste $\sigma$-Algebra, die $G$ enth\"alt\\
+Borelmengen $\B^n$\\
+Erzeugendensystem:\\
+\[G=\{\prod_{i=1}^n [a_i,b_i] \in \R^n | \forall a_i\le b_i , a_i,b_i \in Q\}\]
+(Alle $n$-dimensionalen kompakten Quader mit rationalen Eckpunkten)
+\section{Bedingte Wahrscheinlichkeit, Unabh\"angigkeit}
+Gegenseitige Beeinflussung unter zuf\"alligen Ereignissen
+\subsection{Bedingte Wahrscheinlichkeit}
+Statt $P=P(\boldsymbol{\cdot})$ betrachte $P(\boldsymbol{\cdot}|B): \F \to [0,1]$ (bedingtes Wahrscheinlichkeitsma\ss{} unter der Bedingung $B$)\\
+$P(B|B)=1, P(A|B=c_b*P(A), c_b\ge 1, A \subset B \in \F)$\\
+Aus der Schule: $P_B(A)$\\
+Ereignisse m\"ussen nNICHT zeitlich nacheinander erfolgen!\\
+Viasualisierung am Baumdiagramm: TODO\\
+\textbf{Definition:} f\"ur $P(B)>0$ definiert\\
+\[\P(A|B)\overset{\Delta}{=}\frac{P(A \cap B)}{P(B)}\]
+Wahrscheinlichkeitsraum $(\Omega, \F, P(\boldsymbol{\cdot}| B))$ erf\"ullt alle Axiome.\\
+\textbf{Interpretationen:}
+\begin{enumerate}
+	\item subjektiv: pers\"onliche EInsch\"atzung des Beobachters bez\"uglich des Eintretens von $A$ nachdem er \"uber das Eintreten von $B$ informiert wurde
+	\item frequentistisch: Bruchteil der F\"alle, in denen das Ereignis $A$ eintritt, bezogen auf die F\"alle, in denen das Ereignis $B$ auftritt\\
+		$P(A|B)=\frac{n_{(A\cap B/n)}}{n_B/n}$
+\end{enumerate}
+Unabh\"angigkeit zweier Ereignisse $A_1,A_2$ gegeb Ereignis $A_3$: $P(A_1|A_3)*P(A_2|A_3)=P(A_1 \cap A_2 | A_3)$
+\subsubsection{Gesetz der totalen Wahrscheinlichkeit und Satz von Bayes}
+\textbf{Gesetz der totalen Wahrscheinlichkeit:}
+\[P(A)=\sum_{i=1}^k P(A | B_i)P(B_i)\] mit disjunkten Mengen $B_i$ und $\cup_{i+1}^k B_i=\Omega$ (disjunkte Zerlegung von $\Omega$)\\
+\textbf{Satz von Bayes}
+\[P(B_j|A)=\frac{P(A|B_j)*P(B_j)}{P(A)}=\frac{P(A|B_j)*P(B_j)}{\sum_{i=1}^k P(A | B_i)P(B_i)}\]
+\textbf{Multiplikationsatz:} $P(A|B)P(B)=P(A \cap B)=P(B|A)P(A)$
+$P(A\cap B\cap C\cap D)=P(A|B\cap C\cap D)P(B|C\cap D)P(C|D)P(D)$ (usw.)
+Unter Verwendung von Permutationen $\pi(n)$:\\
+\[P(A_1_{\pi(1)})P(A_{\pi(2)|A_{\pi(1)}})P(A_{\pi(3)}|A_{\pi(2)}\cap A_{\pi(1)})\cdot \lots \cdot P(A_{\pi(k)}| A_{\pi(k-1)} \cap \ldots \cap A_{\pi(1)})\]
+Wichtige Beispiele:\\
+Wenn $A \subset B$ gilt $P(A \cap B)=P(A)$ sowie $P(B|A)=1$ aber nicht andersrum!
+\subsubsection{Stochastische Unabh\"angigkeit}
+\[P(A|B)=P(A),P(B|A)=P(B) \Leftrightarrow P(A \cap B)=P(A)P(B)\]
+Es reicht eine der obigen 3 Gelichungen nachzuweisen!\\
+Dann gilt f\"ur jede endliche Teilmenge $\emptyset \neq J \subset I$: $(\cap_{i\in I} A_i)=\pi_{i\in I} P(A_i)$
+Eintreten von $B$ ver\"andert $A$ nicht.
+Disjunkte Ereignisse sind wenn $P(A),P(B)\neq 0$ IMMER stochastisch abh\"angig
+\subsubsection{Totale Wahrscheinlichkeit}
+\[P(B)=P(B|A)P(A)+P(B|A^c)P(A^c)\]
+Zum Pr\"ufen der Unabh\"angigkeit von $k$ Ereignissen m\"ussen $2^k-k-1$ Gleichungen erf\"ullt sein, wobei zur Pr\"ufung paarweiser Unabh\"angigkeit $\vect{k \\ 2}=\frac{k()k-1}{2}$ Gleichungen ausreichen (schw\"achere Bedingung)\\
+Paarweise unabh\"angige Ereignisse sind nicht zwangsl\"aufig unabh\"anhig! Falls gilt
+\[P(\cap_{i=1}^k A_i)=\Pi_{i=1}^k P(A_i)\]
+bedeutet das nicht, dass die $k$ Ereignisse auch paarweise unabh\"angig sind.
+
+\section{Zufallsvariablen und ihre Wahrscheinlichkeitsverteilung}
+\subsection{Zufallsvariablen}
+Wahrscheinlichkeitsraum $(\Omega,\F,P)$, Messraum $(\Omega',\F')$\\
+\textbf{Zufallsvariable} Abbildung: $\mathrm{X}:\Omega \to \Omega'$, sodass f\"ur jedes Ereignis $A'\in \F$ im Bildraum ein Ereignis $A=\{\omega \in \Omega | \mathrm{X}(\omega) \in A'\} \in \F$ im Urbildraum existiert. Charakterisiert durch $(X,(\Omega,\F,P),(\Omega',\F'))$
+Oft nennt man das Resultat der Abbildung auch $\mathcal{X}$. Verwendet werden Gro\ss{}buchstaben f\"ur die Abbildung  und Kleinbuchstaben f\"ur gew\"ohnliche Variablen.\\
+Kurzschreibweise: $A=\{X \in A'\}=A=X^{-1}(A')$ obwohl $\mathrm{X}$ nicht bijektiv!\\
+Mit Hilfe von Zufallsvariablen k\"onnen Experimente auf die zu untersuchende Fragestellung reduziert werden.\\
+Man kann annehmen, das zu jedem Wahrscheinlichkeitsraum $\Omega,\F,P$ ein Ur-Wahrscheinlichkeitsraum $(\Omega_0,\F_0,P_0)$ existiert, welcher aber unbrauchbar f\"ur jegliche Modellierung w\"are.
+\subsubsection{Charakterisierung:}
+\begin{enumerate}
+	\item Reelle Zufallsvariablen: Bildraum $\R$ mit Borelscher $\sigma$-Algebra $\B$\\
+		WR $(\Omega,\F,P)$, MR $(\R,\B)$\\
+		$\mathrm{X}: \Omega \to \R$ hei\ss{}t reele Zufallsvariable, falls $\{\omega \in \Omega | \mathrm{X}(\omega) \le x\}=\{X \le x\} \forall x \in \R$ gilt.\\
+		Ergebnisse $\omega_i \in \Omega$, Realisierungen $x_i=\mathrm{X}(\omega_i)$\\
+		Dise Anforderung wird f\"ur jede stetige Funktion $\mathrm{X}: \R^n \to \B^n$ erf\"ullt.
+	\item Mehrdimensionale (reelle) Zufallsvariablen\\
+		$\textbf{\mathrm{X}}: \Omega \to \R^n, n \in \N$ mit Borelscher $\sigma$-Algebra $\B^n$\\
+		Zufallsvektor: $\textbf{\mathrm{X}}=\mat{\mathrm{X}_1,\ldots,\mathrm{X}_n}^\top$ mit\\
+		$\mathrm{X}_i: \Omega \to \R$
+	\item Komplexe Zufallsvariablen: Bildraum $\C$
+		$\mathrm{X}: \Omega \to \C$ wenn $\Re{X}$,$\Im{X}$ reelle Zufallsvariablen sind.\\
+		Zufallsvektor: $\textbf{\mathrm{X}}=\mat{\Re{X} & \Im{X}}$
+\end{enumerate}
+\subsection{Verteilung deiner Zufallsvariablen}
+Bildma\ss{} $P_X(A')=P(\{X \in \A'\}) \forall A' \in \F'$ hei\ss{}t Verteilung der Zufallsvariablen und wird als das Bild von $P$ unter $X$ bezeichnet.
+\subsubsection*{CDF}
+Kumulative Verteilungsfunktion (KVF) von $X$, cumularive distribution funktion, cdf\\
+\[F_\mathrm{X}(x)=P(\{X \le x\})\]
+Eigenschaften:
+\begin{itemize}
+	\item $F_X(x)$ monoton wachsend
+	\item $F_x(x)$ rechtsseitig stetig\\
+		Notation mit gef\"ullten Kringeln bei Stetigkeit und ungef\"ullten Kringeln bei Unstetigkeit!
+	\item $\Lim{x \to -\infty}F_X(x)=0$
+	\item $\Lim{x \to + \infty} F_X(x)=1$
+\end{itemize}
+\textbf{Identit\"atsbildung:} $F_{X_{Id}}(x)=P(\{\omega \le x\})$ (Verteilungsfunktion von $P$)
+\textbf{Arten von reellen Zufallsvariablen:}
+diskret: Abbildung auf endlichem oder Abz\"ahlbarem Bildraum\\
+stetig: TDODO\\
+\subsubsection*{PMF}
+Wahrscheinlichkeitsmassenfunktion (WMF) von X, probability mass function, pmf\\
+\[p_\mathrm{X}(x)=P(\{X=x\})\]
+Zusammenhang: $F_X(x)=\sum_{\xi \in \Omega':\xi \le x} p_\mathrm{X}(\xi)$\\
+\textbf{Zufallsvariable X ist stetig, falls} ihre kumulative Verteilungsfunktion dargestellt werden kann als:
+\[F_\mathrm{X}(x)=\int_{-\infty}^x f_\mathrm{X}(\xi) \mathrm{d} \xi\]
+\subsubsection*{PDF}
+Wahrscheinlichkeitsdichtefunktion (WDF) von X, probability density function, pdf\\
+Absolut integrierbare Funktion $f_\mathrm{X}: \R \to [0,\infty[$\\
+Wenn $F_\mathrm{X}$ stetig und bis auf endlich viele Stellen differenzierbar, dann ist $\mathrm{X}$ stetig und es gilt f\"ur differenzierbare $x$:
+\[f_\mathrm{X}(x)=\frac{\mathrm{d} F_\mathrm{X}(x)}{\mathrm{d} x}\]
+Wahrscheinlichkeit f\"ur reelle Zufallsvariablen bei Ereignis $\{X=x\}$:\\
+\[P(\{X=x\})=\begin{cases} p_\mathrm{X}(x) \, \mathrm{X reell und diskret} \\ 0 \, \mathrm{X stetig} \end{cases}\]
+Des weiteren existieren Zufallsvariablen mit sowohl diskretem, als auch stetigem Anteil. Dann existiert, werder eine Wahrscheinlichkeitsdichtefunktion, noch eine Wahrscheinlichkeitsmassefunktion im Sinn der Definition.\\
+Wenn $D$ das Ereignis, dass eine Realisierung von $X$ dem diskreten Teil zuzurechnen ist und $S=D^c$ das Ereignis, dass sie dem stetigen Teil zuzurechnen ist, dann kann man schreiben:\\
+\[\mathrm{X}=\begin{cases} X_D , \mathrm{Falls D eintritt} \\ X_S , \mathrm{Falls S eintritt}\end{cases}\]
+Erweiterte kommulative Verteilungsfunktion von X:\\
+\[F_X(x)=P(D)\sum_{\xi \le x:p_{X_D}(\xi)\neq 0} p_{x_D}(\xi) + P(D^c) \int_{-\infty}^x f_{X_{S}} (\xi) \mathrm{d} \xi\]
+Normiertheitsbedingung auch hier erf\"ullt!\\
+\textbf{Methodik zur einfachen Darstellung des Wahrscheinlichkeitsma\ss{}es von Zufallsvariablen mit diskretem und stetigem Anteil:}\\
+Darstellung einer st\"uckweise konstaten Funktion $g(x)$ als summe gewichteter und verschobener Einheitssprungfunktionen $u(x)=\begin{cases} 1 , x \le 0 \\ 0 , x < 0 \end{cases}$ m\"oglich.\\
+	Sprungfunktion im klassischen Sinne nicht differenzierbar! Aber da
+	\[u(x)=\int_{-\infty}^x \dirac (\xi) \mathrm{d} \xi\]
+	Dirac-Funktion als Ableitung der Einheitssprungfunktion: $\dirac (x)=\frac{\mathrm{d} u(x)}{\mathrm{d} x}$\\
+	Beispiel: kommulative Verteilungsfunktion sowie Wahrscheinlichkeitsdichte einer diskreten Zufallsvariable X:\\
+	\[p_{\mathrm{X}}=\begin{cases} \frac{1}{4} , \, x \in \{\frac{1}{8},\frac{3}{8},\frac{5}{8},\frac{7}{8}\} \end{cases}\]
+	\[F_{\mathrm{X}}=\frac{1}{4}(u(x-\frac{1}{8})+u(x-\frac{3}{8})+u(x-\frac{5}{8})+u(x-\frac{7}{8}))\]
+	\[f_{\mathrm{X}}=\frac{1}{4}(\dirac(x-\frac{1}{8})+\dirac(x-\frac{3}{8})+\dirac(x-\frac{5}{8})+\dirac{x-\frac{7}{8}})]]\]
+% ======================================================================
+% End
+% ======================================================================
+\end{document}

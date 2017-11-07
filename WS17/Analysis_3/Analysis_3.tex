@@ -1,10 +1,9 @@
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% LaTeX4EI Template for Cheat Sheets                                Version 1.0
-%					
-% Authors: Emanuel Regnath, Martin Zellner
-% Contact: info@latex4ei.de
-% Encode: UTF-8, tabwidth = 4, newline = LF	
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% LaTeX4EI Example for Cheat Sheets
+%
+% @encode:      UTF-8, tabwidth = 4, newline = LF
+% @author:      LaTeX4EI
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
 % ======================================================================
@@ -12,54 +11,309 @@
 % ======================================================================
 
 % possible options: color/nocolor, english/german, threecolumn
-% defaults: color, english
-\documentclass[english]{latex4ei/latex4ei_sheet}
+% default: color, english
+\documentclass[nocolor,german]{latex4ei/latex4ei_sheet}
 
 % set document information
-\title{LaTeX4EI \\ Cheat Sheet}
-\author{LaTeX4EI}					% optional, delete if unchanged
-\myemail{info@latex4ei.de}			% optional, delete if unchanged
-\mywebsite{www.latex4ei.de}			% optional, delete if unchanged
+\title{Analysis 3\\Zusammenfassung}
+\author{Philipp van Kempen}                % optional, delete if unchanged
+\myemail{philipp.van-kempen@tum.de}        % optional, delete if unchanged
+
+	\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1    }\;$}}}
+	
+	\newcommand{\iftsymbol}{\mbox{\setlength{\unitlength}{0.1em}\begin{picture}(25,4)\put(3,3){\circle*{4}}\put(4,3){\line(1,0){13}}\put(19,3){\circle{4}}\end{picture}}}
+
+	% Define Transformations
+	\DeclareMathOperator{\T}{\overset{\scriptscriptstyle\mathcal{}}{\ftsymbol}}						% General Transform
+	%\DeclareMathOperator{\FT}{\overset{\scriptscriptstyle\mathcal{F}}{\ftsymbol}}					% Fourier Transform
+	%\DeclareMathOperator{\LT}{\overset{\scriptscriptstyle\mathcal{L}}{\ftsymbol}}					% Laplace Transform
+	%\DeclareMathOperator{\DFT}{\overset{\scriptscriptstyle\mathcal{DF}}{\ftsymbol}}					% Discrete Fourier Transform
+	%\DeclareMathOperator{\DTFT}{\overset{\scriptscriptstyle\mathcal{DTF}}{\ftsymbol}}				% Discrete Time Fourier Transform
+	%\DeclareMathOperator{\ZT}{\overset{\scriptscriptstyle\mathcal{Z}}{\ftsymbol}}					% Z-Transform
 
 
-% ======================================================================
-% Begin
-% ======================================================================
+	% Define inverse Transformations
+	\DeclareMathOperator{\IT}{\overset{\scriptscriptstyle\mathcal{}}{\iftsymbol}}					% General Transform
+	\DeclareMathOperator{\IFT}{\overset{\scriptscriptstyle\mathcal{F}}{\iftsymbol}}					% Fourier Transform
+	\DeclareMathOperator{\ILT}{\overset{\scriptscriptstyle\mathcal{L}}{\iftsymbol}}					% Laplace Transform
+	\DeclareMathOperator{\IDFT}{\overset{\scriptscriptstyle\mathcal{DF}}{\iftsymbol}}				% Discrete Fourier Transform
+	\DeclareMathOperator{\IDTFT}{\overset{\scriptscriptstyle\mathcal{DTF}}{\iftsymbol}}				% Discrete Time Fourier Transform
+	\DeclareMathOperator{\IZT}{\overset{\scriptscriptstyle\mathcal{Z}}{\iftsymbol}}					% Z-Transform
+
+% DOCUMENT_BEGIN ===============================================================
 \begin{document}
 
+\maketitle      % requires ./img/Logo.pdf
 
-% Title
-% ----------------------------------------------------------------------
-\maketitle   % requires ./img/Logo.pdf
-
-
-% Section
-% ----------------------------------------------------------------------
-\section{Math}
-
-
-\begin{sectionbox}
-	\subsection{Sinus}
+\section*{Sonstiges}
+\subsection{Notationen}
+Vergleich zweier Funktionen: $f(x) \equiv \utilde{f}(x) $
+\subsection*{Itentit\"aten}
+	\begin{itemize}
+        \item Frequenz $f=\frac{1}{T}$ in Hz, $f=\frac{\omega}{2 \pi}$
+        \item $\overline{e^{i k}}=e^{- i k}$        \item komplexe Exponentialfunktion ist $2 \pi$-periodisch
+        \item Stammfunktion der komplexen Exponentialfunktion wie in $\R$ allerdings gilt:\\
+                $\forall m \in \Z: e^{2 \pi i m}=1 \Rightarrow \int_0^1 e^{2 \pi i m \tau} d \tau=0 \forall m \in \Z \setminus \{0\}$\\
+				WICHTIG
+        \item Eulersche Formel:\\
+                $e^{i x}=\cos{x}+i \sin{x}$\\
+                $\Rightarrow e^{-i x}=\cos{x}-i \sin{x}$\\
+                mit $\cos{-x}=\cos{x}$ (gerade)\\
+                und $\sin{-x}=-\sin{x}$ (ungerade)\\
+				$\cos{x}=\frac{e^{i x}+e^{- i x}}{2}$\\
+				$\sin{x}=\frac{e^{i x} - e^{- i x}}{2 i}$
+        \item $i^2=-1$, $\frac{1}{i}=-i$
+		\item $\cos{2 \pi k}={(1)}^k$\\
+			$\cos{\pi k}={(-1)}^k$\\
+			$\sin{\frac{\pi k}{2}}+sin{\frac{3 \pi k}{2}}=0$
+		\item Hyperbolische Funktionen\\
+			Definitionsbereich:?\\
+			$\cosh{x}=\frac{e^x+e^{-x}}{2}$\\
+			$\sinh{x}=\frac{e^x-e^{-x}}{2}$
+	\end{itemize}
+\subsection{Grundlagen}
+	\begin{itemize}
+		\item Fortsetzbarkeit in einer Unstetigkeitsstelle ist gegeben, falls der Funktionswert an Stelle $a$ nicht existiert, allerdings der rechtsseitige- und der linksseitige Limes gegen den selben Wert konvergieren! Hierbei hilft:\\
+			$\Lim{t \to 0^+} f(t) = \Lim{t\ to 0^-} f(-t)$
+	\end{itemize}
 	
-	Text goes here ...
-	
-	
-\end{sectionbox}
+\subsection*{Beispiele}
+\begin{itemize}
+	\item S\"agezahn\\
+		Skizze: TODO\\
+		$f(t)=\frac{1}{2}(\pi - t), 2 \pi-$periodisch auf $0<t<2 \pi, f(0)=0$\\
+		$S_f(t)=\sum_{n=1}^\infty \frac{1}{2} \sin{n}$\\
+		Koeffizienten ebenfalls in jeder Formelsammlung\\
+		S\"agezahn ist st\"uckweise $C^1$ (sogar $C^\infty$)\\
+		allgemein: $f(t)=\frac{T}{2}-t$ auf $(0 < t < T)$
+	\item Stammfunktion einer positiven Funktion, kann nicht periodisch sein!
+	\item Nebenergebnis $\frac{\pi^2}{6}=1+\frac{1}{2^2}+\frac{1}{3^2}+\ldots$
+	\item Treppenfunktionen lassen sich vereinfacht integrieren, wenn man das Integral an den Sprungstellen in eine Summe von Integralen splittet und ausnutzt, dass $f'(t)=0$ da $f(t)=\mathrm{const}$. Letzter Sprung muss wieder zum 1. Wert gelangen.
+	\item Auswertung periodischer Funktionen: $f(6\pi)=f(6\pi-3 \cdot 2 \pi)\neq f(2\pi)$ da f\"r $2 \pi$ nicht definiert.
+	\item Optimaler Tiefpass-Filter (GRAFIK) w\"urde alle Samples ben\"otigen. W\"ahle $d_k=1$ f\"ur zum Beispiel $k<5$ wenn $d_k$ Fourier-Koeffizient von $g$ und dem gefiltertem Signal $f \ast g$
+\end{itemize}
+\section{Orthogonalreihen, Integraltransformationen}
+\subsection{Fourier-Reihen}
+\textbf{Ziel:} Beschreibung eines periodischen Signals durch \"Uberlagerung harmonischer Schwingungen\\
+\subsubsection{Grundlagen}
+Funktionen $f: \mathbb{R} \to \mathbb{C}$ mit
+\begin{itemize}
+        \item $f$ ist \textbf{$T$-periodisch} $\Leftrightarrow f(t+T)=f(t) \forall t \in \R$
+        \item $f$ ist \textbf{st\"uckweise stetig}, falls in jedem $t \in \R$ der \textbf{rechtsseitige Grenzwert} $f(t_+)=\Lim{\tau down t} f(\tau) \in \C$ und der \textbf{linksseitige Grenzwert} $f(t_-)=\Lim{\tau up t}$ existieren und in jedem beschr\"anktem Intervall $(a,b) \subset \C$ $f$ \textbf{stetig} ist, \textbf{bis auf endlich viele Punkte (Sprungstellen)}  
+\end{itemize}
+Periode $T$, Kreisfrequenz $\omega=\frac{2 \pi}{T}$\\
+\textbf{Darstellungen:}\\
+\begin{itemize}
+        \item komplex:
+                \[S_f(t)=\Lim{N \to \infty} \sum_{n=-N}^N c_n e^{i n \omega t}\]
+				Mit Schwingungen $e^{i n \omega t}$ und Frequenzen $0, (0 Hz),\omega (\frac{1}{T}),2 \omega (frac{2}{T}),\ldots$\\
+				Andere Schreibweise der Summe: $\sum_{k \in \Z}$
+        \item sin-cos:
+                \[S_f(t)=\frac{a_0}{2}+\sum{n=1}^{\infty}(a_n \cos (n \omega t)+ b_n \sin (n \omega t))\]
+\end{itemize}
+\textbf{Tipps:}\\
+\begin{itemize}
+	\item Integral splitten bei Betrag!
+	\item Integralgrenzen an Intervall, nicht an $T$ anpassen!
+	\item W\"ahlt man eine doppelt so gro\ss{}e periode, wird das $w$ dementsprechend kleiner, sodass die Koeffizienten sich \"andern. Allerdings sind die Fourierreihen \"aquivalent durch die verlangsamung der Schwinungen.
+	\item Betrachte Symmetrieeingenschaften:
+		\begin{itemize}
+			\item gerade: $b_k=0 \forall k$
+			\item ungerade $a_k=0 \forall k$
+			\item weder noch $\exists a_k,b_k \neq 0$
+			\item $f$ ungerade $\Rightarrow f \cdot \cos$ ungerade, $f \cdot \sin$ gerade
+			\item $F$ gerade $\Rightarrow f \cdot \cos$ gerade, $f \cdot \sin$ ungerade
+		\end{itemize}
+\end{itemize}
+\textbf{Formeln f\"ur Fourier-Koeffizienten:}\\
+Fourier-Koeffizienten enthalten Amplituden und Phaseninformationen\\
+komplex ($k \in \Z$): \[c_k=\frac{1}{T}\int_0^T f(t) e^{-i k \omega t} d t = \int_0^1 f(\tau T) e^{-2 \pi i k t} d \tau \in \C\]
+Liegt der Mittelwert der zu untersuchenden Funktion \"uber eine Periodein der $x/t$-Achse, so ist $c_0$ stets gleich $0$\\
+trigonometrisch ($k \in \N_0$ bzw. $k \in \N$):
+$a_0=\frac{2}{T} \int f(t) d t$
+\[a_k=\frac{2}{T}\int_0^T f(t) \cos (k \omega t) d t = 2 \int_0^1 f(t \tau) \cos (2 \pi k \tau) d \tau\]
+\[b_k=\frac{2}{T}\int_0^T f(t) \sin (k \omega t) d t = 2 \int_0^1 f(t \tau) \sin (2 \pi k \tau) d \tau\]
+Achtung: Teils ist Integrationsbereich $(-\pi,\pi)$ sinnvoller um Fallunterscheidung zu ersparen.\\
+Ist $f$ reelwertig, dann folgt $a_k,b_k \in \R$ aber nicht $c_k \in \R$\\
+\begin{tabular}{|l|l|l|}
+        Art & \textbf{Fourieranalyse} & \textbf{Fouriersynthese} \\ 
+		geg. & $f$ & ${(c_k)}_{k\in \Z}$ \\ 
+		ges. & ${(c_k)}_{k\in \Z}$ & $S_f$ \\ 
+        Notation & $\T$ & $\iftsymbol$ \\
+\end{tabular}\\
+Wobei ${(c_k)}_{k=0,\pm 1,\ldots}$ Spektralwerte hei\ss{}en\\
+$S_f$ und $f$ stimmen bis auf Unstetigkeiten \"uberein! In Unstetigkeiten wird der Mittelwert des rechtsseitigen und linksseitigen Grenzwertes verwendet. (Mittelwerteigenschaft)\\
+Eine Linearkombination von stetigen Funktionen ist stetig.\\
+\textbf{Cauchy Hauptwert:} \[\sum_{n=-\infty}^{\infty}\ldots=\Lim{N \to \infty} \sum_{n=-N}^N \ldots\] TODO Fehler (symm. Grenzwert)\\
+\textbf{Fundamentalbeziehungen:}
+\begin{itemize}
+        \item Orthogonalist\"tsrelation (OR)\\
+                $k,n \in \Z$:\\
+			$\frac{1}{T} \int_0^T e^{i n \omega t} e^{-i k \omega t} d t=\int_0^1 e^{2 \pi i (n-k) \tau} d \tau=\begin{cases} 0, (n\neq k)\\1, (n=k)\end{cases}=\delta_{n k}$\\
+                mit Kronecker-Symbol $\delta_{i j}$
+        \item Umrechnungsformeln (UR)
+                \begin{itemize}
+                        \item $c_k \to a_k,b_k$:\\
+								$a_0=2 c_0$\\
+                                $a_k=c_k+c_{-k}$ ($k \in \N_0$)\\
+                                $b_k=\i(c_k-c){-k}$ ($k \in \N$)
+                        \item $a_k,b_k \to c_k$:\\
+                                $c_0=\frac{a_0}{2}$\\
+                                $c_k=\frac{a_k-\i b_k}{2}$ ($k \in \N$)\\
+                                $c_{-k}=\frac{a_k+i b_k}{2}$ ($k \in \N$)
+                        \item falls $f$ $\R$-wertig:\\
+                                $a_k=2 \Re{c_k}$ ($k \in \N_0$)\\
+                                $b_k=2 \Im{c_k}$ ($k \in \N$)\\
+								$c_{-k}=\overline{c_k}=\Re{c_k}-i \Im{c_k}$ ($k \in \Z$)
+				\end{itemize}
+Bei den Formeln f\"ur $c_k,a_k,b_k$ kann man $\int_0^T \ldots d t$ ersetzen durch $\int_a^{a+T} \ldots d t$\\
+\end{itemize}
+% TODO: replace \int_a^b f(x) dx with \int_a^b \! f(x) \, \mathrm{d}x
 
+Ist $f$ ein \textbf{$T$-periodisches trigonometrisches Polynom}, also:\\
+$f(t)=\sum_{n=-M}^N d_n e^{i n \omega t}$, so gilt:\\
+\[c_k=\begin{cases} d_k, (-M \le k \le N) \\ 0 , \mathrm{sonst} \end{cases}\]
+	$\Rightarrow$ F\"ur trigonometrische Polynome $f$ gilt $S_f=f$ (Fourierreihe=Funktion)\\
+\textbf{Vorgehensweise:}\\
+Falls $f(t)$ Summe von Einzeltermen:\\
+\begin{enumerate}
+	\item Bestimme kleinste Periode f\"ur Summanden $\Rightarrow$ bestimme kleinste geimeinsame Periode\\
+		(konstante Funktion $f(t)=c$ periodisch f\"ur jede Periode $T$)\\
+	\item Kreisfrequenz $\omega$ bestimmen
+	\item Bestimmung der Koeffizienten:
+		\begin{itemize}
+			\item Mit Formeln: TODO
+			\item Ablesen aus Euler-Formel:\\
+				$\cos{t+\alpha}=\frac{1}{2}e^{i (t+\alpha)}+\frac{1}{2} e^{- i (t+\alpha)}$\\
+				$\sin{b t}=-\frac{i}{2} e^{i b t}+\frac{i}{2} e^{-i b t}$\\
+				$\Rightarrow$ $\frac{e^{i \alpha}}{2} e^{i t}$,$\ldots$ durch Auftrennen\\
+				$c_0=$Konstanter Term\\
+				$c_k=$ Term vor $e^{i k \omega t}$ (positiv und negativ)\\
+				Weitere $c_k=0$?
+		\end{itemize}
+	\item Umrechnung:\\
+		\begin{itemize}
+			\item Mit Additionstheoremen $\cos{t+\alpha}$ auf Form $a_1 \cos{t} + b_1 \sin{t}$ bringen\\
+				Umformung in eine $T$-periodische cos-sin-Reihe. Koeffizienten ablesen.
+			\item Umrechnungsformeln (besser wenn $c_k$ bekannt) Andere $a_k,b_k=0$?
+		\end{itemize}
+\end{enumerate}
+Achtung beim Einsetzen von Werten au\ss{}erhalb des Definitionsbreiches, wie z. B. $f(-t)$! Hier muss die Periode so oft addiert bzw subtrahiert werden, bis man nur noch im Definitionsbereich von $f$ liegt. Au\ss{}erdem drehen sich beim Einsetzen von negativem $t$ die Intervallgrenzen, sodass aus $[0,2 \pi)$ dann $(0,2 \pi]$ werden w\"urde.\\
+\textbf{Zusammenh\"ange zwischen Funktion und Fourierkoeffizienten $c_k$:}\\
+\begin{enumerate}
+	\item Aufspalten: Berechnet man die Koeffizienten f\"ur jeden Sumanden einer Summe von Funktionen ist das Koeffizient der Summe, die Summe der Teilkoeffizienten
+	\item Skalieren: Multiplikation der Funktion mit einem Faktor, bedeutet \"Anderung der Koeffizienten um den selben Faktor
+	\item Spiegeln: Falls $c_k$ Koeffizient zu $f(t)$, so ist $c_{-k}$ Koeffizient zu $f(-t)$
+\end{enumerate}
+Falls $f(t)$ st\"uckweise stetig diff'bar so gilt $S_f(0)=f(0)$\\
+Unterscheiden sich 2 Funktionen nur in endlich vielen Punkten, so ist ihre Fourier-Reihe dieselbe, da endlich viele Punkte f\"ur das Integral irrelevant!\\
+\textbf{Fragen bez\"uglich deer Konvergenz:}
+\textbf{Definition:} $f:\R\to\C$ hei\ss{}t st\"uckweise stetig differenzierbar, wenn $f$ auf jedem beschr\"anktem Intervall $(a,b) \subset \R$ bis auf h\"ochstens endlich viele Stellen stetig differenzierbar ist und zudem in jedem $t \in R f$ und $f'$ links- und rechts-seitige Grenzwerte $f(f-),f'(t-),f(t+),f'(t+)$ in $\C$ existieren!\\
+Darum exklusiv, weil S\"agezahn da periodisch unendlich oft sprint. H\"aufung von Unstetigkeitsstellen NICHT erlaubt.\\
+\begin{enumerate}
+	\item Wo konvergiert $S_f(t)$ und wo gilt $S_f(t)=f(t)$?\\
+		\textbf{Satz:} TODO f\"ur die Fourierreihe einer $T$-periodischen st\"uckweise stetig differenzierbaren Funktion ist:\\
+		Punktweise Konvergenz $\forall t \in \R: S_f^N(t)=\Lim{N \to \infty} S_f^N \in \C TODO \forall t$ wobei $S_f^N(t)=\sum_{n+-N}^N c_n e^{i n \omega t}$ ($N$-te Partialsumme)
+	\item Wo konvergiert $S_f$ gleichm\"a\ss{}ig gegen $f$?\\
+		Gleichm\"a\ss{}ige Konvergenz von $S_f^N(t)$ gegen $f(t)$ auf jedem abgeschlossenem Intervall ohne Sprungstellen. Um so n\"aher man sich an den Sprungstellen befinden, um so h\"oher muss das $N$ werden, um eine Abweichung kleiner $\epsilon$ zu gew\"ahrleisten.
+	\item Was passiert an den Sprungstellen?\\
+		An jeder Sprungstelle $t$ gilt:
+			\begin{itemize}
+				\item Mittelwerteigenschaft: $S_f(t)=\frac{f(t-)+f(t+)}{2}$
+				\item Gibbs-Ph\"anomen: GRAFIK, an erster \"Uberschwingung (Extrema) vor/nach Sprungstelle gilt $\Lim{N\to \infty}|\frac{S_f^N(t_N)-S_f^N(t)}{f(t+)-f(t)}|=\propto 1.18$ ($18$ Prozent)
+			\end{itemize}
+\end{enumerate}
+\subsubsection*{RECHENREGELN}
+	$f,g: \R \to \C$, st\"uckweise stetig, $T$-periodisch\\
+	$f \T (c_k)$,$g \T (d_k)$
+	\begin{itemize}
+		\item Linearit\"at: $\forall \alpha,\beta \in \C: \alpha f + \beta g \T (\alpha c_k + \beta d_k)$
+		\item Konjugation/Zeitumkehrung: $\overline{f} \T {(\overline{c_{-k}})}_{k \i \Z}$\\
+			$f(-t)\T(c_{-k}){k\in\Z}$
+		\item Streckung der Zeitskala: $\gamma>0$, $f(\gamma t) \T (c_k)$ (keine \"Anderung)\\
+			$f(\gamma t)$ besitzt die Periode $\utilde{T}=\frac{T}{\gamma}$\\
+		\item Verschiebung im Zeitbereich: $a \in \R, f(t+a) \T {(e^{i k \omega a c_k})}_{k \in\Z}$
+		\item Verschiebung im Spektralbereich, Amplitudenmodulation: $e^{i n \omega t} f(t) \T {(c_{k-n})}_{k \in\Z}$, $n \in \Z$
+		\item Symmetrien
+			\begin{itemize}
+				\item $f$ gerade: $f(\frac{T}{2}+t)=f(\frac{T}{2}-t) \Leftrightarrow f(t)=f(-t) \forall t$\\
+					Graph spiegelsymmetrisch zur gerade $t=\frac{T}{2}$\\
+					Prototyp: $\cos{k \omega t}$\\
+					$\Rightarrow$ $c_k=c_{-k} \forall k \in \Z$, $a_k=\frac{4}{T} \int_0^{\frac{T}{2}} f(t)\cos{k \omega t} d t$ (Halbierung des Integrationsberechs und Verdopplung des Integralwerts)\\
+					$b_k=0 (k \ge 1)$
+				\item $f$ ungerade: $f(\frac{T}{2}+t)=-f(\frac{T}{2}-t) \Leftrightarrow f(t)=f(-t) \forall t$\\
+					Graph punktsymmetrisch zu $(\frac{T}{2})$\\
+					Prototyp: $\sin{k \omega t}$\\
+					$\Rightarrow$ $c_k=c_{-k}$, $a_k=0$ ($k \in \N_0$)\\
+					$b_k=\frac{4}{T} \int_0^{\frac{T}{2}} f(t) \sin{k \omega t}$ ($k \in \N$)
+				\item $f$ $\frac{T}{2}-$periodisch: $f$ ist invariant gegen\"uber einer Zeitverschiebung um $\frac{T}{2}$. F\"ur Periode $T$ hat dann $f$ die Fourierkoeffizienten: $c_{2 k+1}=0$, $c_{2 k}=\frac{2}{T} \int_0^\frac{T}{2} f(t) e^{-2 k i \omega t} d t$, $a_{k+1}=0$, $b_{k+1}=0$\\
+					$a_{2k}=\frac{4}{T} \int_0^{\frac{T}{2}} f(t) \cos{2 k \omega t} d t$\\
+					$b_{2k}=\frac{4}{T} \int_0^{\frac{T}{2}} f(t) \sin{2 k \omega t} dt $\\
+					Prototypen: $e^{- (2k) \omega t, WO IST J},\cos{2 k \omega t},\sin{2 k \omega t}$
+				\item $f$ ohne $\frac{T}{2}-$periodischen Anteil: $f(\frac{T}{2}+t)=-f(t) \forall t$?\\
+					$\Rightarrow c_{2k}=0,a_{2k}=0,b_{2k}=0$\\
+					$c_{2k+1}=TODO,a_{2k+1}=TODO,b_{2k+1}=TODO$
+			\end{itemize}
+		\item Fourierreihe der Ableitung: $f$ stetig auf $\R$ und $f'$ st\"uckweise stetig\\
+			$f'\T {(i k\omega c_k)}_{k\in\Z}$ aber $c_0=$?TODO
+		\item Fourierreihe der Stammfunktion: $f$ st\"uckweise stetig\\
+			$c_0=\frac{1}{T} \int_0^T f(t) d t=0$\\
+			$F(t)=\int_0^t f(\tau) d \tau \T \begin{cases} \frac{1}{i k \omega} c_k , k \neq 0 \\ \frac{1}{T} \int_0^T t f(t) d t , (k=0)  \end{cases}$\\
+				Bemerkung: $F$ $T$-periodisch erfordert $F(T)=F(0)$ und Freiheit vom Mittelwert.
+		\item Ableitung bei Sprungstellen: $f$ st\"uckweise stetig mit $N$ Spr\"ungen bei $0 \le t_1 < t_2 < \cdots <t_N < =\mathrm{Periode}T$ zwischen den Sprungstellen ist $F\in \mathcal{C}^2$ ($N$ Sprungstellen pro Periode)
+			Sprungh\"ohe bei $t_j$: $\Delta_j=f(t_{j}+)-f(t_{j}-)$\\
+			$f'$ ist die Ableitung in Differenzierbarkeitspunkten. In den Sp\r"ungen ist $f'$ nicht definiert beziehungsweise auf einen beliebigen Wert gesetzt.\\
+			Fourier-Koeffizienten: $f' \T {(i k \omega c_k - \frac{1}{T} \sum_{j=1}^N)\Delta_j e^{-ik\omega t_j}}_{k\in\Z}$\\
+			Verallgemeinterte Ableitung mit \textbf{Dirac-Impuls} $\delta(t)=$Umpuls der St\"arke 1 bei $t=0$ mit den Eigenschaften $\int_{-\infty}^{\infty} \delta(t) d t=1$ und $\int_{-\infty}^{\infty}\delta(t) f(t) d t=f(0)$.\\
+			Verschobener Dirac $\delta(t-a)$ analog mit $\int_{-\infty}^{\infty} \delta(t-a)f(t) d t=f(a)$\\
+			Wenn $Df=$ Ableitung von $f$ inklusive Differenzieren der Sprungstellen:
+			\[Df(t)=f'(t)+\sum_{j=1}^N \Delta_j \delta(t-t_j)\]
+			mit Fourierkoeffizienten $Df \T {(i k \omega c_k)}_{k \in\Z}$\\
+			(Wahl der Berechnung selbst entscheiden)
+	\end{itemize}
+	\textbf{Gr\"o\ss{}enordnung der Fourierkoeffizienten:}\\
+	$f$ st\"uckweise setig und stetig differenzierbar bis auf endlich viele Sprungstellen pro Periode. Die Fourierkoeffizienten $(\hat{c_k})$ seien beschr\"ankt ($|\hat{c_k}\le C| \forall k$)\\
+	Dann gibt es $M > 0$ mit $|\hat{c_k}| \le \frac{M}{|k|} \forall k \neq 0$
 
-\begin{sectionbox}
-	\subsection{Cosinus}
-	
-	Text goes here ...
-	
-	
-\end{sectionbox}
-
-
-
-
-
-% ======================================================================
-% End
-% ======================================================================
+	\subsubsection{Periodische Faltung von $f,g$}
+	\[(f \ast g)=\frac{1}{T}\int_0^T f(t-\tau)g(\tau)d \tau\] 
+	Beispiele:\\
+	$(1 \ast f)(t)=c_0 (f \T (c_k))$\\
+	$(e^{i k \omega t} \ast f)=c_k e^{i k \omega t}$ (k-ter Summand der Fourierreihe von $f$)\\
+	\textbf{Rechenregeln:}
+	\begin{enumerate}
+		\item Kommutativit\"at: $f \ast g=g \ast f$ (Beweis mit Substitution)
+		\item Linearit\"at pro Faktor: $h \ast (\alpha f + \beta g)=\alpha (h \ast f)+\beta (h \ast g)$
+		\item $f \ast g \T c_k d_k$ (Beweis mit Fubini)
+		\item $f,g$ st\"uckweise stetig $\Rightarrow$ $f\ast g$ stetig. Integral wirkt gl\'attend, auch wenn $f,g$ sprungbehaftet
+	\end{enumerate}
+	\textbf{Gr\"o\ss{}enordnungen (Teil 2)}
+	$f,f',\ldots,f^{(n-2)}$ st\"uckweise stetig, $f^{(n-1)}$ st\"uckweise stetig differenzierbar\\
+	$\Rightarrow |c_k| \le \frac{M}{|k|^m}$ f\"ur $(k \neq 0)$\\
+	Also: falls $f$ unstetig fallen die FK mit $\frac{M}{k}$, falls $f'$ unstetig mit $\frac{M}{k^2}$, wenn $f''$ unstetig mit $\frac{M}{k^3}$,\ldots\\
+	\textbf{Anwendungen der Faltung:}
+	\begin{enumerate}
+		\item Interpretation: Faltung mit S\"agezahn\\
+			$f(t)=(\frac{T}{\pi}s(\omega \dot) \ast f')(t)+c_0$\\
+			mit Gleichspannungsoffset $c_0$ und Notation $f(\dot)$ f\"ur $f$\\
+			Gleichheit gezeigt, da $f$ und der Ausdruck beide stetig sind und die Fourierkoeffizienten gleich.
+		\item Frequenzgang von LTI-Systemen
+			\textbf{LTI:} linear time invariant\\
+			SYMBOL!\\
+			Superposition: $\alpha x_1 + \beta x_2 \rightarrow \alpha y_1 + \beta y_2$ mit $x_i \rightarrow y_i$\\
+			Zeitinvarianz: TODO\\
+			Wenn Eingangssignal $T$-periodisch, ist auch $T$-periodisch.\\
+			Ausgang $y(t)$ erf\"ullt lineare DGL mit $a_n \neq 0$:\\
+			\[L[y](t):=a_n y^{(n)}+a_{n-1} y^{(n-1)}+\cdots+a_1 y'+a_0 y(t)=x(t)\]
+			\textbf{Charakteristisches Polynom:}\\	
+			$P(s)=a_n s^n + a_{n-1} s^{n-1} + \cdots + a_1 s + a_0$\\
+			\textbf{Spezieller Input:} $x(t)=e^{i k \omega t}$\\
+			L\"osungsansatz $y(t)=d_k e^{i k \omega t}$\\
+			Mit Forderung $P(i k \omega)\neq 0 \forall k$ (keine Resonanz) gilt: $d_k=\frac{1}{P(i \omega k)} \forall k \in \Z$
+	\end{enumerate}
+	\textbf{Frequenzgang des LTI-Systems}
+	$(d_k)_{k \in \Z}$ mit $d_k=\frac{1}{P(i \omega k)}$
+	\textbf{$T$-periodische Impulsantwort des LTI-Systems} ist $H_T(t):=\sum_{n=-\infty}^{\infty} d_n e^{i n \omega t}$\\
+	\"Ubertragungsgesetz: $y(t)=(h_T \ast x)(t)=\frac{1}{T} \int_{0}^T h_T(t-\tau)x(\tau)d \tau$\\
+% document_end =================================================================
 \end{document}

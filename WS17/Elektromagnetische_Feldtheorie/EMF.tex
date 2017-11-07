@@ -1,0 +1,208 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% LaTeX4EI Example for Cheat Sheets
+%
+% @encode: 	UTF-8, tabwidth = 4, newline = LF
+% @author:	LaTeX4EI
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+% ======================================================================
+% Document Settings
+% ======================================================================
+
+% possible options: color/nocolor, english/german, threecolumn
+% default: color, english
+\documentclass[english]{latex4ei/latex4ei_sheet}
+
+% set document information
+\title{Elektromagnetische Feldtheorie}
+\author{Philipp van Kempen}					% optional, delete if unchanged
+\myemail{philipp.van-kempen@tum.de}			% optional, delete if unchanged
+
+
+% DOCUMENT_BEGIN ===============================================================
+\begin{document}
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1    }\;$}}}
+\maketitle	% requires ./img/Logo.pdf
+
+\section*{Sonstiges}
+\subsection*{Begriffe}
+\begin{itemize}
+\item quasi-statisch: ausschließlich als eine Abfolge von Gleichgewichtszuständen bestehend
+\item homogen: gleichmäßig aufgebaut
+\item homegene DGL bedeutet keine Quellenterme (nach $0$ aufl\"osbar)
+\item isotrop: Unabhängigkeit einer Eigenschaft von der Richtung
+\item Funktional: Eine Funktion aus einem Vektorraum $V$ in den Körper, der dem Vektorraum zugrunde liegt
+\end{itemize}
+\subsection*{Formelzeichen und Einheiten}
+\begin{tabular}{llll}
+Name                  & Formelzeichen & Einheit           & SI                       \\
+El. Stroms\"arke      & I             & A                 & A                        \\
+El. Spannung          & U,V           & V                 & $\frac{kg m^2}{A s^3}$   \\
+El. Raumladungsdichte & $\rho$        & $\frac{C}{m^3}$   & $\frac{A s}{m^3}$    \\
+El. Feld              & $\vec{E}$     & $\frac{V}{m}$ & $\frac{kg m}{A s^3}$     \\            
+El. Flussdichte       & $\vec{D}$     &                   & $\frac{A s}{V m^2}$      \\
+El. Stromdichte       & $\tilde{\jmath}$     &					  & $\frac{A}{m^2}$          \\
+Mag. Flussdichte      & $\vec{B}$     & $\frac{V s}{m^2}$ & TODO					 \\
+Mag. Feld             & $\vec{H}$	  &					  & $\frac{A}{m}$            \\
+\end{tabular}
+\subsection*{Konstanten}
+\subsection*{Mathematik}
+\begin{itemize}
+	\item $\div{\vec{E} \times \vec{H}}=\nabla \cdot (\vec{E} \times \vec{H})=\rot{\vec{E}}\vec{H}-\rot{\vec{H}}\vec{E}$
+\end{itemize}
+\subsection*{Beispiele}
+\begin{itemize}
+	\item Koaxialkabel: Energie wird nicht von Leitern, sondern von Feld zwischen beiden Leiterpotentialen \"ubertragen. Vorteil ist, dass durch diese Schirmung keine Strahlung nach Au\ss{}en auftritt.\\
+	Fallunterscheidungen f\"ur Innenleiter, Zwischenraum, Au\ss{}enleiter und Au\ss{}enraum.
+\item Plattenkondensator analog: Energie im Feld/Dielektrikum
+\item Ladungsanordnung im W\"urfel: 12 Kanten mit L\"ange $a$ und 12 Seitendiagonalen mit Abstand $\sqrt{2}a$ sowie $4$ Diagonalen durch den Mittelpunkt mit Abstand $\sqrt{3}a$ (Raumdiagonale)
+\item Spule mit $N$ Wicklungen: $\int_{\partial A} \vec{H} d \vec{a}= I N$
+\end{itemize}
+\section{Klassische Kontinuit\"atstheorie}
+\subsection{Gleichungen}
+\subsubsection{Maxwellsche Gleichungen}
+\textbf{Differentielle Form:}
+\begin{itemize}
+\item Gauss'sches Gesetz:\\$\div\vec{D}=\rho$
+\item Faradays Inkduktionsgesetz:\\$\rot \vec{E}=-\frac{\partial \vec{B}}{\partial t}$
+\item Quellenfreiheit:\\$\div\vec{B}=0$
+\item Ampere'sches Durchflutungsgesetz:\\$\rot \vec{H}=\tilde{\jmath}+\frac{\partial \vec{D}}{\partial t}$
+\end{itemize}
+\textbf{Bedeutung:}
+\begin{itemize}
+\item Elektrische Felder werden erzeugt
+\begin{itemize}
+\item von elektrischer Ladungsverteilung
+\item durch schnell zeitlich ver\"anderliches Magnetfeld
+\end{itemize}
+\item Magnetische Felder werden erzeugt
+\begin{itemize}
+\item durch elektrische Stromverteilung
+\item durch schnell zeitlich ver\"anderliches elektrisches Feld
+\end{itemize}
+\end{itemize}
+\textbf{Elektromagnetisches Feld:} $\vect{\vec{E}\\\vec{H}}$ (starker dynamischer Zusammenhang)
+\subsubsection{Matrialgleichungen}
+\begin{itemize}
+\item $\vec{D}=\epsilon \vec{E}$ (Polarisation)
+\item $\vec{B}=\mu \vec{H}$ (Magnetisierung)
+\item $\tilde{\jmath}=\sigma \vec{E}$ (Drift)
+\end{itemize}
+G\"ultigkeitsbereich eingeschr\"ankt!\\
+Randwerte zur eindeutigen L\"osung des Systems notwendig
+\subsection{Energie von elektromagnetischen Feldern}
+\subsubsection{Elektrische Energiedichte}
+\textbf{Energie zum Aufbau einer diskreten Ladungsverteilung}\\
+GRAFIK\\
+k-te Ladung: \[\Delta W_{el}^{k}=q_k \frac{1}{4 \pi \epsilon}\sum_{i=1}^{k-1} \frac{q_i}{|\vec{r}_k-\vec{r}_i|}\]
+gesamt: \[\Delta W_{el}=\sum_{k=2}^n \Delta W_{el}=\sum_{i<k}^{N} \sum_{i,k=1}^{N} \frac{1}{4 \pi \epsilon} \frac{q_k q_i}{|\vec{r}_k-\vec{r}_i|}=\frac{1}{2} \frac{1}{4 \pi \epsilon}\sum_{i \neq k}^{N} \sum_{i,k=1}^{N} \frac{q_k q_i}{|\vec{r}_k-\vec{r}_i|}\]\\
+Kombinationsm\"oglichkeiten: $K=N(N-1)$\\
+Achtung bei Formeln (teilweise nur in eine Richtung beachten!)
+\textbf{\"Ubergang zu kontinuierlicher Ladungsverteilung}\\
+${(q_i,\vec{r}_i)}_{i=1,\ldots,N} \to \rho(\vec{r})$\\
+$q_i=d Q_i(\vec{r}_i)=\rho(\vec{r}_i) d^3 r$\\
+\textbf{Prinzip  der virtuellen Verschiebung:} \"Anderung der Position $\vec{r}_l$ durch $\delta \vec{r}_l$ f\"ur zu \"Anderung der elektrischen Arbeit $\delta W_{el}=\frac{\partial W_{el}}{\delta r_l}$. Elektrostatische Kraft $\vec{F}_l$ wirkt auf Ladung $q_l$ w\"ahrend $\delta \vec{r}_l \Rightarrow$ $\delta W_{mech}=\vec{F} \delta \vec{r}_l$. Energiererhaltung $\delta W_m + \delta W_{el}=0 \Rightarrow \vec{F}_l=-\frac{\partial W_{el}}{\partial \vec{r}_l}$\\
+\textbf{Substitutionsregel:}
+\[\sum_{i=1}^N {\ldots,\vec{r}_i,\ldots} q_i \to \int_V {\ldots,\vec{r},\ldots} \rho(\vec{r}) d^3 r\]
+\textbf{Doppelintegral:}
+\[W_{el}=\frac{1}{8 \pi \epsilon} \int_V \int_V \frac{\rho(\vec{r}) \rho(\vec{r}')}{|\vec{r}-\vec{r}'|}d^3 r d^3 r'\]
+Elektrische Energie als Funktional der Feldquellen:\\
+$W_{el}=W_{el}[\rho]$\\
+\textbf{1. Variation von $W_{el}$ bez\"uglich kleiner \"Anderung $\delta \rho$:}\\
+\[\delta W_{el}[\rho,\delta \rho] := \frac{d}{d \alpha}W_{el}[\rho+\alpha \delta \rho]|_{\alpha=0}\]
+Differentielle \"Anderung mit von Ladungsverteilung erzeugtem Coulomb-Potential:\\
+$\delta W_{el}=\int_V \Phi (\vec{r}) \delta \rho(\vec{r}) d^3 r$\\
+Mit Verwendung von $\div \delta \vec{D} = \delta \rho$ und Kugelradius $R \to \infty$:\\
+$\delta W_{el}=\int_{\mathrm{R}^3} \vec{E} \delta \vec{D} d^3 r$\\
+Aus $W_{el}=\int_{\mathrm{R}^3} w_{el}(\vec{r}) d^3 r$ folgt:\\
+$\delta W_{el} = \int_{\mathrm{R}^3} \delta w_{el}{\vec{r}}d^3 r$\\
+\textbf{Lokale differentielle \"Anderung der Energiedichte im elektrischen Feld:}\\
+$\delta w_{el}=\vec{E}\delta \vec{D}$\\
+\textbf{Wegintegral zur Berechnung der lokalen Energiedichte des el. Feldes:}\\
+\[w_{el}=\int_{\vec{0}}^{\vec{D}}\vec{E}(\vec{D}')d\vec{D}'\] 
+\textbf{Gesamte elektrische Energie:} $W_{el}=\int_V w_{el} d V$\\
+\textbf{Sonderfall:} streng lineares Dielektrikum\\
+$w_{el}=\frac{1}{2 \epsilon}\vec{D}^2=\frac{\epsilon}{2}\vec{E}^2=\frac{1}{2}\vec{E}\vec{D}$\\
+F\"ur matrixwertiges Epsilon:\\
+$w_{el}=\frac{1}{2}\vec{E}^\top \underline{\epsilon}\vec{E}$
+
+\subsubsection{Magnetische Energiedichte}
+Externe zu erbringende Leistung (mechanische Arbeit), um in dem elektromagnetischen System eine Stromverteilung aufzubauen und aufrechtzuerhalten:\\
+$P_{elmag}=-$ mechanische Leistung\\
+\textbf{diskret:} \[P_{elmag}=-\sum_{k=1}^N q_k \vec{v}_k \vec{E}(\vec{r}_k)\]
+\textbf{kontinuierlich:} $N \to \infty$
+\[P_{elmag}=-\int_V \tilde{\jmath}(\vec{r})\vec{E}d^3 r\]
+In Abh\"angingkeit der Feldgr\"o\ss{}en:\\
+$P_{elmag}=-\int_V \rot{\vec{H}} \vec{E} d^3 r + \int_V \vec{E} \frac{\partial \vec{D}}{\partial t} d^3 r$\\
+Wobei $\int_V \vec{E} \frac{\partial \vec{D}}{\partial t} d^3 r=\int_V \frac{\partial w_{el} }{\partial t} d^3 r=\frac{dW_{el}}{d t}$\\
+Kugelgebiet $V=K(\vec{0},R)$ mit $R \to \infty$
+\[\Rightarrow P_{elmag}=\frac{d W_{el}}{d t}+\frac{dW_{mag}}{d t}+\Lim{R \to \infty} \int_{|\vec{r}|=R} (\vec{E} \times \vec{H}) d \vec{a}\]
+mit Poynting-Vektor: $(\vec{E} \times \vec{H})$ (zeigt in Ausbreitungsrichtung der Welle, elektromagnetische Energiestromdichte,Leistungsflussdichte)\\
+\textbf{Absch\"tzung des Limes:}\\
+\[\mathrm{s.o.}=\begin{cases} 0 , \mathrm{falls quasistatisch} \\ \mathrm{total abgestrahlte Leistung , falls dynamisch} \end{cases}\]
+Begr\"undung quasistatisch: $|\vec{E}|\approx \frac{1}{R^2},|\tilde{\jmath}|\approx \frac{1}{R^2},|\vec{H}|\approx \frac{1}{R^3},|d\vec{a}|\approx \frac{1}{R^2}$\\
+\textbf{Differentielle \"Anderung der gesamten mag. Feldenergie:}
+\[\delta W_{mag}=\int_{\R^3} \vec{H} \delta \vec{B} d^3 r\]
+\textbf{Differentielle \"Anderung der Energiedichte des mag. Feldes:}
+\[\delta w_{mag}=\vec{H} \delta \vec{B}\]
+\textbf{Energiedichte es magnetischen Feldes:} (Wegintegral)
+\[w_{mag}=\int_{\vec{0}}^{\vec{B}} \vec{H}(\vec{B}') d \vec{B}'\]
+\textbf{gesamte magnetische Energie:} $W_{mag}=\int_V w_{mag} d V$\\
+\textbf{Spezialfall:} streng linear ($\vec{B}=\mu \vec{H},\mu=\mathrm{const}$)
+\[w_{mag}=\frac{\mu}{2}\vec{H}^2=\frac{1}{2} \vec{H} \vec{B}=\frac{1}{2 \mu} \vec{B}^2\]
+
+\subsubsection{Allgemeine Bilanzgleichung}
+\textbf{Extensive physikalische Gr\"o\ss{}e $X$} besitzt Volumendichte $x(\vec{r},t)$ sodass in Gebiet $V$ f\"ur den enthaltenen Mengeninhalt gilt: $X(V)=\int_V x(\vec{r},t) d^3 r$\\
+Beispiele:\\
+Ladung ($Q,\rho_{el}$), Masse ($M, \rho_M$), Energie ($W_{el},w_{el}$),..\\
+\textbf{Stromdichte einer extensiven Gr\"o\ss{}e:}\\
+$\vec{J}_X (\vec{r},t)$ mit:
+\begin{enumerate}
+	\item Skalarprodukt $\vec{J}_X d \vec{a}=$ Menge von $X$, welche pro Zeiteinheitdie Kontrollf\"ache in Normalenrichtung durchflie\ss{}t
+	\item Durch Oberf\"ache $\partial V$ von Kontrollvolumen $C$ nach au\ss{}en str\"omende Menge der Gr\"o\ss{}e $X$ gegeben durch Flussintegral:\\
+		$\int_{\partial V} \vec{J}_X \mathrm{d} \vec{a}$
+\end{enumerate}
+\textbf{Produktionsrate:}\\
+$\prod_X (\vec{r},t)$ gibt an welche Menge von $X$ pro Volumeneinheit und Zeiteinheit erzeugt ($>0$) oder vernichtet ($<0$) wird.\\
+\textbf{Bilanzgleichung in integraler Form:}\\
+$\frac{\mathrm{d} X(V)}{\mathrm{d} t}=-\int_{\partial V} \vec{J}_X \mathrm{d} \vec{a} + \int_V \prod_X \mathrm{d}^3 r$\\
+\textbf{Bilanzgleichung in differentieller Form:}\\
+$\frac{\partial x}{\partial t}=\div{\vec{J}_X}+\prod_X$\\
+Beispiel: Ladungserhaltung ($0=\div{\vec{\jmath}}+\frac{\partial \rho}{\partial t}$) ohne Ladungsgenerationsrate $\prod_Q$ weil Ladung weder verrichtet, noch erzeugt werden kann.
+
+\subsubsection{Energiebilanz des elektromagnetischen Feldes, Poynting-Vektor}
+
+Es gelten:
+$\frac{\partial w_{el}}{\partial t} = \vec{E} \frac{\partial \vec{D}}{\partial t}$\\
+$\frac{\partial w_{mag}}{\partial t}= \vec{H} \frac{\partial \vec{B}}{\partial t}$\\
+$w_{elmag}=w_{el}+w_{mag}$\\
+$\pi_{elmag}=-\vec{\jmath} \vec{E}$\\
+\textbf{Poynting-Vektor} $\vec{S}=\vec{E} \times \vec{H}$\\
+\[\vec{J}_{elmag}=\vec{E} \times \vec{H} + \vec{S}_0, \div{\vec{S}_0}=0\]
+da sich $\div{\vec{J}_{elmag}}=\div{\vec{S}}$ nicht unterscheiden.
+\textbf{Beispiel:} Wenn $\vec{E},\vec{H}$ die dynamisch gekoppelten Komponenten EINES elektromagnetischen Feldes sind (. B. Sendeantenne), dann gilt $\vec{S}=\vec{J}_{elmag}$
+\subsection{Potentialdarstellung des elektromagnetischen Feldes}
+\subsubsection{Elektromagnetisches Vektor- und Skalarpotential}
+\textbf{Allgemeine Definition und Eigenschaften des Vektorpotentials}\\
+Auf $\Omega \subset \R^3$ definiertes Vektorfeld $\vec{U}(\vec{r})$ besitzt Vektorpotential $\vec{V}\vec{r}$, falls ein auf $\Omega$ differenzierbares Vektorfeld $\vec{V}\vec{r}$ existiert, sodass $\vec{U}(\vec{r})=\rot \vec{V}(\vec{r})$. Dann gilt $\dev \vec{U}=\div{\rot{\vec{V}(\vec{r})}}$\\
+\textbf{Satz von Poincare:}\\
+$\vec{U}(\vec{r})$ ist stetig differenzierbar in kompaktem/sternf\"ormigem Gebiet $\Omega$ mit $\div \vec{U}=0 \Rightarrow \exists $ Vektorpotential $\vec{V}(\vec{r}) \in \Omega$ mit $\vec{U}=\rot{\vec{V}} \in \Omega$
+\textbf{Eindeutigkeit} ist bis auf additives Gradientenfeld gegeben. Es exitiert also ein Skalarfeld $\mathcal{X}(\vec{r})$ auf $\Omega$. Alle Vektorpotentiale haben also die Form:\\
+$\vec{V}'=\vec{V}-\grad{\mathcal{X}(\vec{r})}$\\
+\textbf{Elektromagnetisches Vektorpotential}:\\
+Global definiertes Vektorfeld $\vec{A}(\vec{r},t)$ mit $\vec{B}(\vec{r},t)=\rot{\vec{A}(\vec{r},t)}$\\
+Da $\vec{A}$ und $\vec{A}'=\vec{A}-\vec{\nabla}\mathcal{X}$ dasselbe $\vec{B}$-Feld liefern ist $\vec{A}$ nicht ganz eindeutig. Man nennt $\mathcal{X}$ Eichpotential und kann die Eichfreiheit dazu nutzen, zus\"atzlich Eichbedingungen zu erf\"ullen.\\
+\textbf{Skalares elektromagnetisches Potential}\\
+Da $\vec{E}+\frac{\partial \vec{A}}{\partial t}$ ein Gradientienfeld ist, existiert elektromagnetisches skalares Potential (Skalarfeld) $\Phi{\vec{r},t}$ und das elektrische Feld hat damit die Darstellung:
+\[\vec{E}(\vec{r},t)=i\grad{\Phi{\vec{r},t}}-\frac{\partial \vec{A}}{\partial t}\]
+\textbf{Eichtransformation}
+Den Prozess $\vec{A}'=\vec{A}-\vec{\nabla}\mathcal{X}$ nennt man `Umeichen'. Hierbei muss aber auch das skalare Potential transformiert werden sodass die umgeeichten elektromagnetischen Potentiale lauten:\\
+$\vec{A}'(\vec{r},t)=\vec{A}(\vec{r},t)-\vec{\nabla}(\vec{r},t)$\\
+$\Phi'(\vec{r},t)=\Phi{\vec{r},t}+\frac{\partial \mathcal{X}}{\partial t}(\vec{r},t)$\\
+\subsubsection{Maxwellsche Gleichungen in Potentialdarstellung}
+4-komponentiges partielles Differentialgleichungssystem f\"ur Unbekannte $(\Phi,\vec{A})$ bei gegebenen Quellen $\rho,\jmath$:
+\[\div{\epsilon \nabla \Phi}+\frac{\partial}{\partial t} \div{\epsilon \vec{A}}=-\rho\]
+\[\rot{\frac{1}{\mu}\rot{\vec{A}}+\epsilon \frac{\artial^2 \vec{A}}{\partial t^2}}+\epsilon \nabla(\frac{\partial \Phi}{\partial t})=\jmath\]
+% DOCUMENT_END =================================================================
+\end{document}
